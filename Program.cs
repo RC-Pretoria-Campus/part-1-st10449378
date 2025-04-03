@@ -10,7 +10,10 @@ namespace Bot
         {
 
             // Define the ASCII art for the logo
-            string logo = @"                                                          _______
+            Console.ForegroundColor = ConsoleColor.Blue;
+            string logo = @"    
+               
+                                                                                          _______
           _____                 _________________       ___________________              /       \
           |   |                |                |      |                  |             /   / \   \
           |   |                |    ____________|      |   _______________|            /   /   \   \
@@ -45,7 +48,7 @@ namespace Bot
 
             // Display the logo at the start of the chatbot
             Console.WriteLine(logo);
-
+            Console.ResetColor();
 
             // Create a SpeechSynthesizer object
             SpeechSynthesizer synth = new SpeechSynthesizer();
@@ -70,6 +73,13 @@ namespace Bot
                 Console.WriteLine("What would you like to ask?");
                 synth.Speak("What would you like to ask");
                 string userInput = Console.ReadLine();
+
+                if (userInput.ToLower() == "exit")
+                {
+                    Console.WriteLine("Goodbye! Stay safe online.");
+                    synth.Speak("Goodbye! Stay safe online.");
+                    break; // Exit the loop
+                }
 
 
                 // Process the input
@@ -120,7 +130,8 @@ namespace Bot
             {
                 return "I’m here to help with cybersecurity questions. Could you clarify what you'd like to know about password safety, phishing or safe browsing?";
             }
-           
+            
+
         }
     }
 }
